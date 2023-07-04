@@ -5,14 +5,14 @@ class MealRepository
   def initialize(csv_file)
     @csv_file = csv_file
     @meals = []
-    @increment_id = 1
+    @next_id = 1
     load_csv if File.exist?(@csv_file)
   end
 
   def create(meal)
-    meal.id = @increment_id
+    meal.id = @next_id
     @meals << meal
-    @increment_id += 1
+    @next_id += 1
     save_csv
   end
 
@@ -39,11 +39,11 @@ class MealRepository
 
   def load_csv
     # Getting @meals from CSV
-    CSV.foreach(@csv_file, headers: :first_row, header_converters: :symbol) do |row|
+    CSV.foreach(@csv_file, headers: true, header_converters: :symbol, strip: true) do |row|
       row[:id] = row[:id].to_i
       row[:price] = row[:price].to_i
       @meals << Meal.new(row)
     end
-    @increment_id = @meals.last.id + 1 unless @meals.empty?
+    @next_id = @meals.last.id + 1 unless @meals.empty?
   end
 end
