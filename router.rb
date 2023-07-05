@@ -1,7 +1,6 @@
 class Router
   def initialize(meals_controller)
     @meals_controller = meals_controller
-    # @customers_controller = customers_controller
     @running = true
   end
 
@@ -22,7 +21,7 @@ class Router
     puts "--------------------"
     puts "1. Add new meal"
     puts "2. List all meals"
-    puts "8. Exit"
+    puts "3. Exit"
     print "> "
   end
 
@@ -30,10 +29,22 @@ class Router
     case choice
     when 1 then @meals_controller.add
     when 2 then @meals_controller.list
-    when 8 then stop!
+    when 3 then stop!
     else puts "Try again..."
     end
   end
+
+  # def route_action_with_if(choice)
+  #   if choice == 1
+  #     @meals_controller.add
+  #   elsif choice == 2
+  #     @meals_controller.list
+  #   elsif choice == 3
+  #     stop!
+  #   else
+  #     puts "Try again..."
+  #   end
+  # end
 
   def stop!
     @running = false

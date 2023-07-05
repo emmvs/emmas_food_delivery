@@ -6,7 +6,7 @@ class MealsView
   end
 
   def ask_user_for(sth)
-    puts "What is the #{sth}?"
+    puts "What is the #{sth} of your meal?🍟"
     print "> "
     return gets.chomp
   end

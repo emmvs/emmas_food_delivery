@@ -3,7 +3,6 @@ require_relative "./app/controllers/meals_controller"
 require_relative "router"
 
 MEALS_CSV_FILE = File.join(__dir__, "data/meals.csv")
-CUSTOMERS_CSV_FILE = File.join(__dir__, "data/customers.csv")
 
 meal_repository = MealRepository.new(MEALS_CSV_FILE)
 meals_controller = MealsController.new(meal_repository)

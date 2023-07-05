@@ -5,6 +5,7 @@ class MealRepository
   def initialize(csv_file)
     @csv_file = csv_file
     @meals = []
+    # @next_id is used to give an unique id to the next meal object being created
     @next_id = 1
     load_csv if File.exist?(@csv_file)
   end
@@ -12,6 +13,7 @@ class MealRepository
   def create(meal)
     meal.id = @next_id
     @meals << meal
+    # Prepare the id for the next meal object
     @next_id += 1
     save_csv
   end
@@ -44,6 +46,7 @@ class MealRepository
       row[:price] = row[:price].to_i
       @meals << Meal.new(row)
     end
+    # Make sure that the id written in the CSV file is different from each meal
     @next_id = @meals.last.id + 1 unless @meals.empty?
   end
 end
